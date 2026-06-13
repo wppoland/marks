@@ -14,4 +14,4 @@ jobs:
       run-i18n: false
       run-playwright: false
       # Plugin Check = wp.org submission gate; enable when prepping submission.
-      run-plugin-check: false
+      run-plugin-check: true
