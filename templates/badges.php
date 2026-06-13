@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 defined('ABSPATH') || exit;
 
-// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- Variables are local to the template include scope, not true globals.
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- Variables are local to the template include scope, not true globals.
 
 if (empty($badges) || ! is_array($badges)) {
     return;
