@@ -36,7 +36,7 @@ $groupClasses = sprintf(
     <?php foreach ($badges as $badge) : ?>
         <?php if ( strpos( $badge->style, 'image' ) === 0 ) : ?>
             <span class="marks-badge marks-badge--image">
-                <img src="<?php echo esc_url($badge->text); ?>" alt="" style="max-height: 24px; vertical-align: middle; display: inline-block;" />
+                <img src="<?php echo esc_url($badge->text); ?>" alt="" width="48" height="24" loading="lazy" decoding="async" />
             </span>
         <?php else : ?>
             <span class="marks-badge marks-badge--<?php echo esc_attr(sanitize_html_class($badge->style)); ?>">
