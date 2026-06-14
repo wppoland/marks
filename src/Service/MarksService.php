@@ -10,13 +10,10 @@ use WPPoland\StorefrontKit\Badge\BadgeEngine;
 defined('ABSPATH') || exit;
 
 /**
- * Thin adapter over the storefront-kit {@see BadgeEngine}.
- *
- * Injects this plugin's text-domain ('marks'), option prefix ('marks_') and
- * product meta keys into the namespace-neutral engine, and renders badges
- * through a packaged CSS-only template. All badge logic lives in the kit; this
- * class only supplies localisation, option storage, meta-key naming and the
- * front-end stylesheet.
+ * Wires {@see BadgeEngine} with this plugin's text-domain ('marks'), option
+ * prefix ('marks_') and product meta keys, and renders badges through a CSS-only
+ * template. This class supplies localisation, option storage, meta-key naming
+ * and the front-end stylesheet.
  */
 final class MarksService implements HasHooks
 {
@@ -30,9 +27,9 @@ final class MarksService implements HasHooks
 
     public function __construct()
     {
-        // The engine ships with storefront-kit >= 1.2.0. When present, wire it
-        // with this plugin's text-domain / option prefix / meta keys. Otherwise
-        // leave the service inert (see registerHooks()).
+        // When the badge engine is available, wire it with this plugin's
+        // text-domain / option prefix / meta keys. Otherwise leave the service
+        // inert (see registerHooks()).
         if (! class_exists(BadgeEngine::class)) {
             return;
         }
@@ -71,9 +68,8 @@ final class MarksService implements HasHooks
             return;
         }
 
-        // TODO: storefront-kit < 1.2.0 has no BadgeEngine. Bump the
-        // `wppoland/storefront-kit` constraint (composer update) to enable
-        // product badges. No hooks are registered until the engine is present.
+        // The badge engine is unavailable; no hooks are registered until it is
+        // present.
     }
 
     public function enqueueAssets(): void

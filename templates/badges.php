@@ -1,7 +1,7 @@
 <?php
 /**
- * CSS-only product badge group, rendered on the storefront by the
- * storefront-kit BadgeEngine. No JavaScript, no layout shift.
+ * CSS-only product badge group rendered on the storefront. No JavaScript, no
+ * layout shift.
  *
  * @package Marks
  *

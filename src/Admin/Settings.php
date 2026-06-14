@@ -104,9 +104,9 @@ final class Settings implements HasHooks
             return;
         }
 
-        // Edge state: the engine only exists when storefront-kit provides it.
-        // Without it, badges cannot render — tell the merchant clearly instead
-        // of showing settings that would silently do nothing.
+        // Edge state: without the badge engine, badges cannot render — tell the
+        // merchant clearly instead of showing settings that would silently do
+        // nothing.
         if (! class_exists(\WPPoland\StorefrontKit\Badge\BadgeEngine::class)) {
             $this->renderUnavailableNotice();
 
