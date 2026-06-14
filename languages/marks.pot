@@ -1,0 +1,247 @@
+# Copyright (C) 2026 WPPoland
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Marks 0.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/marks\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-06-14T09:51:37+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: marks\n"
+
+#. Plugin Name of the plugin
+#: marks.php
+#: src/Admin/Settings.php:42
+msgid "Marks"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: marks.php
+msgid "https://plogins.com/marks/"
+msgstr ""
+
+#. Description of the plugin
+#: marks.php
+msgid "Automatic and manual product badges for WooCommerce (sale, new, low-stock, bestseller) — CSS-only, no layout shift"
+msgstr ""
+
+#. Author of the plugin
+#: marks.php
+msgid "WPPoland"
+msgstr ""
+
+#. Author URI of the plugin
+#: marks.php
+msgid "https://plogins.com/"
+msgstr ""
+
+#: marks.php:47
+msgid "Marks requires WooCommerce to be active."
+msgstr ""
+
+#: src/Admin/Settings.php:41
+msgid "Marks Settings"
+msgstr ""
+
+#: src/Admin/Settings.php:86
+msgid "Enable badges"
+msgstr ""
+
+#: src/Admin/Settings.php:96
+msgid "Show product badges on the storefront."
+msgstr ""
+
+#: src/Admin/Settings.php:103
+msgid "Placement"
+msgstr ""
+
+#: src/Admin/Settings.php:105
+msgid "Choose where badges appear. You can also place them manually with the [marks_badges] shortcode."
+msgstr ""
+
+#: src/Admin/Settings.php:110
+msgid "Single product page"
+msgstr ""
+
+#: src/Admin/Settings.php:110
+msgid "Show badges on the product page."
+msgstr ""
+
+#: src/Admin/Settings.php:111
+msgid "Shop and category listings"
+msgstr ""
+
+#: src/Admin/Settings.php:111
+msgid "Show badges on shop, category and tag listings."
+msgstr ""
+
+#: src/Admin/Settings.php:116
+msgid "Automatic badges"
+msgstr ""
+
+#: src/Admin/Settings.php:118
+msgid "Badges that appear on their own based on each product's state. CSS-only, no layout shift. Leave a label empty to use the default text."
+msgstr ""
+
+#: src/Admin/Settings.php:124
+#: src/Service/MarksService.php:43
+msgid "Sale"
+msgstr ""
+
+#: src/Admin/Settings.php:124
+msgid "On products currently on sale."
+msgstr ""
+
+#: src/Admin/Settings.php:125
+#: src/Service/MarksService.php:44
+msgid "New"
+msgstr ""
+
+#: src/Admin/Settings.php:125
+msgid "On products created within the newness window."
+msgstr ""
+
+#: src/Admin/Settings.php:126
+#: src/Service/MarksService.php:45
+msgid "Low stock"
+msgstr ""
+
+#: src/Admin/Settings.php:126
+msgid "On stock-managed products at or below the threshold."
+msgstr ""
+
+#: src/Admin/Settings.php:127
+#: src/Service/MarksService.php:46
+msgid "Bestseller"
+msgstr ""
+
+#: src/Admin/Settings.php:127
+msgid "On products at or above the sales threshold."
+msgstr ""
+
+#: src/Admin/Settings.php:128
+#: src/Service/MarksService.php:47
+msgid "Free shipping"
+msgstr ""
+
+#: src/Admin/Settings.php:128
+msgid "On products in a free-shipping shipping class."
+msgstr ""
+
+#: src/Admin/Settings.php:129
+#: src/Service/MarksService.php:48
+msgid "Out of stock"
+msgstr ""
+
+#: src/Admin/Settings.php:129
+msgid "On products that are out of stock."
+msgstr ""
+
+#: src/Admin/Settings.php:131
+msgid "Discount percent"
+msgstr ""
+
+#: src/Admin/Settings.php:131
+msgid "Shows the sale discount as a percentage (e.g. -20%)."
+msgstr ""
+
+#: src/Admin/Settings.php:136
+msgid "Thresholds"
+msgstr ""
+
+#: src/Admin/Settings.php:140
+msgid "Newness window (days)"
+msgstr ""
+
+#: src/Admin/Settings.php:140
+msgid "Show the New badge on products created within this many days."
+msgstr ""
+
+#: src/Admin/Settings.php:141
+msgid "Low-stock threshold"
+msgstr ""
+
+#: src/Admin/Settings.php:141
+msgid "Show the Low stock badge when remaining stock is at or below this number."
+msgstr ""
+
+#: src/Admin/Settings.php:142
+msgid "Bestseller threshold"
+msgstr ""
+
+#: src/Admin/Settings.php:142
+msgid "Show the Bestseller badge when total sales reach this number."
+msgstr ""
+
+#: src/Admin/Settings.php:146
+msgid "Free-shipping classes"
+msgstr ""
+
+#: src/Admin/Settings.php:156
+msgid "Comma-separated product shipping-class slugs that count as free shipping."
+msgstr ""
+
+#: src/Admin/Settings.php:162
+msgid "Appearance"
+msgstr ""
+
+#: src/Admin/Settings.php:167
+msgid "Badge shape"
+msgstr ""
+
+#: src/Admin/Settings.php:174
+msgid "Pill (rounded)"
+msgstr ""
+
+#: src/Admin/Settings.php:175
+msgid "Square"
+msgstr ""
+
+#: src/Admin/Settings.php:186
+msgid "Uppercase labels"
+msgstr ""
+
+#: src/Admin/Settings.php:186
+msgid "Render badge labels in uppercase."
+msgstr ""
+
+#: src/Admin/Settings.php:188
+msgid "Max badges (product page)"
+msgstr ""
+
+#: src/Admin/Settings.php:188
+msgid "Maximum number of badges shown on a single product page."
+msgstr ""
+
+#: src/Admin/Settings.php:189
+msgid "Max badges (listings)"
+msgstr ""
+
+#: src/Admin/Settings.php:189
+msgid "Maximum number of badges shown on shop and category listings."
+msgstr ""
+
+#: src/Admin/Settings.php:194
+msgid "Manual badge"
+msgstr ""
+
+#: src/Admin/Settings.php:196
+msgid "A store-wide manual badge. Leave the label empty to disable it; set the per-product meta _marks_manual_text to show it on a product."
+msgstr ""
+
+#: src/Admin/Settings.php:203
+msgid "Manual badge label"
+msgstr ""
+
+#: src/Admin/Settings.php:217
+msgid "Manual badge colour"
+msgstr ""
+
+#: src/Admin/Settings.php:336
+msgid "Custom label (optional)"
+msgstr ""

@@ -11,10 +11,12 @@ use Marks\Contract\HasHooks;
 /**
  * Admin settings page registered as a top-level "Marks" menu.
  *
- * Stores settings in the `marks_settings` option (array): the automatic badge
- * toggles (sale / new / low-stock / bestseller) with a low-stock threshold,
- * plus a single store-wide manual badge label and colour. All output is
- * escaped; all input is sanitised and clamped on save.
+ * Stores settings in the `marks_settings` option (array): placement, the
+ * automatic badge toggles (sale / new / low-stock / bestseller / discount /
+ * free-shipping / out-of-stock) with custom labels and thresholds, the render
+ * hints (shape / uppercase / per-context caps), plus a single store-wide manual
+ * badge label and colour. All output is escaped; all input is sanitised and
+ * clamped on save.
  */
 final class Settings implements HasHooks
 {
@@ -23,6 +25,9 @@ final class Settings implements HasHooks
 
     /** Allowed manual badge colour keys (mapped to CSS classes by the template). */
     private const STYLES = ['accent', 'success', 'warning', 'danger', 'neutral'];
+
+    /** Allowed badge shapes (mapped to CSS classes by the template). */
+    private const SHAPES = ['pill', 'square'];
 
     public function registerHooks(): void
     {
@@ -95,36 +100,94 @@ final class Settings implements HasHooks
                     </tbody>
                 </table>
 
+                <h2><?php esc_html_e('Placement', 'marks'); ?></h2>
+                <p class="description">
+                    <?php esc_html_e('Choose where badges appear. You can also place them manually with the [marks_badges] shortcode.', 'marks'); ?>
+                </p>
+                <table class="form-table" role="presentation">
+                    <tbody>
+                        <?php
+                        $this->checkboxRow('show_on_single', __('Single product page', 'marks'), __('Show badges on the product page.', 'marks'), $settings);
+                        $this->checkboxRow('show_on_loop', __('Shop and category listings', 'marks'), __('Show badges on shop, category and tag listings.', 'marks'), $settings);
+                        ?>
+                    </tbody>
+                </table>
+
                 <h2><?php esc_html_e('Automatic badges', 'marks'); ?></h2>
                 <p class="description">
-                    <?php esc_html_e('Badges that appear on their own based on each product\'s state. CSS-only, no layout shift.', 'marks'); ?>
+                    <?php esc_html_e('Badges that appear on their own based on each product\'s state. CSS-only, no layout shift. Leave a label empty to use the default text.', 'marks'); ?>
                 </p>
 
                 <table class="form-table" role="presentation">
                     <tbody>
                         <?php
-                        $this->checkboxRow('show_sale_badge', __('Sale', 'marks'), __('On products currently on sale.', 'marks'), $settings);
-                        $this->checkboxRow('show_new_badge', __('New', 'marks'), __('On products created within the newness window.', 'marks'), $settings);
-                        $this->checkboxRow('show_low_stock_badge', __('Low stock', 'marks'), __('On stock-managed products at or below the threshold.', 'marks'), $settings);
-                        $this->checkboxRow('show_bestseller_badge', __('Bestseller', 'marks'), __('On products at or above the sales threshold.', 'marks'), $settings);
+                        $this->autoBadgeRow('sale', __('Sale', 'marks'), __('On products currently on sale.', 'marks'), $settings, true);
+                        $this->autoBadgeRow('new', __('New', 'marks'), __('On products created within the newness window.', 'marks'), $settings, true);
+                        $this->autoBadgeRow('low_stock', __('Low stock', 'marks'), __('On stock-managed products at or below the threshold.', 'marks'), $settings, true);
+                        $this->autoBadgeRow('bestseller', __('Bestseller', 'marks'), __('On products at or above the sales threshold.', 'marks'), $settings, true);
+                        $this->autoBadgeRow('free_shipping', __('Free shipping', 'marks'), __('On products in a free-shipping shipping class.', 'marks'), $settings, true);
+                        $this->autoBadgeRow('out_of_stock', __('Out of stock', 'marks'), __('On products that are out of stock.', 'marks'), $settings, true);
+                        // Discount-percent badge text is computed (e.g. -20%), so no label field.
+                        $this->autoBadgeRow('discount_percent', __('Discount percent', 'marks'), __('Shows the sale discount as a percentage (e.g. -20%).', 'marks'), $settings, false);
+                        ?>
+                    </tbody>
+                </table>
+
+                <h2><?php esc_html_e('Thresholds', 'marks'); ?></h2>
+                <table class="form-table" role="presentation">
+                    <tbody>
+                        <?php
+                        $this->numberRow('newness_days', __('Newness window (days)', 'marks'), __('Show the New badge on products created within this many days.', 'marks'), $settings, 1);
+                        $this->numberRow('low_stock_threshold', __('Low-stock threshold', 'marks'), __('Show the Low stock badge when remaining stock is at or below this number.', 'marks'), $settings, 1);
+                        $this->numberRow('bestseller_threshold', __('Bestseller threshold', 'marks'), __('Show the Bestseller badge when total sales reach this number.', 'marks'), $settings, 1);
                         ?>
                         <tr>
                             <th scope="row">
-                                <label for="marks_low_stock_threshold"><?php esc_html_e('Low-stock threshold', 'marks'); ?></label>
+                                <label for="marks_free_shipping_classes"><?php esc_html_e('Free-shipping classes', 'marks'); ?></label>
                             </th>
                             <td>
                                 <input
-                                    type="number"
-                                    min="1"
-                                    step="1"
-                                    id="marks_low_stock_threshold"
-                                    name="<?php echo esc_attr(self::OPTION); ?>[low_stock_threshold]"
-                                    value="<?php echo esc_attr((string) (int) ($settings['low_stock_threshold'] ?? 3)); ?>"
-                                    class="small-text"
+                                    type="text"
+                                    id="marks_free_shipping_classes"
+                                    name="<?php echo esc_attr(self::OPTION); ?>[free_shipping_classes]"
+                                    value="<?php echo esc_attr((string) ($settings['free_shipping_classes'] ?? 'free-shipping')); ?>"
+                                    class="regular-text"
                                 />
-                                <p class="description"><?php esc_html_e('Show the low-stock badge when remaining stock is at or below this number.', 'marks'); ?></p>
+                                <p class="description"><?php esc_html_e('Comma-separated product shipping-class slugs that count as free shipping.', 'marks'); ?></p>
                             </td>
                         </tr>
+                    </tbody>
+                </table>
+
+                <h2><?php esc_html_e('Appearance', 'marks'); ?></h2>
+                <table class="form-table" role="presentation">
+                    <tbody>
+                        <tr>
+                            <th scope="row">
+                                <label for="marks_shape"><?php esc_html_e('Badge shape', 'marks'); ?></label>
+                            </th>
+                            <td>
+                                <select id="marks_shape" name="<?php echo esc_attr(self::OPTION); ?>[shape]">
+                                    <?php
+                                    $currentShape = (string) ($settings['shape'] ?? 'pill');
+                                    $shapeLabels  = [
+                                        'pill'   => __('Pill (rounded)', 'marks'),
+                                        'square' => __('Square', 'marks'),
+                                    ];
+                                    foreach (self::SHAPES as $shape) :
+                                        ?>
+                                        <option value="<?php echo esc_attr($shape); ?>" <?php selected($currentShape, $shape); ?>>
+                                            <?php echo esc_html($shapeLabels[$shape] ?? $shape); ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </td>
+                        </tr>
+                        <?php $this->checkboxRow('uppercase', __('Uppercase labels', 'marks'), __('Render badge labels in uppercase.', 'marks'), $settings); ?>
+                        <?php
+                        $this->numberRow('max_badges_single', __('Max badges (product page)', 'marks'), __('Maximum number of badges shown on a single product page.', 'marks'), $settings, 1);
+                        $this->numberRow('max_badges_loop', __('Max badges (listings)', 'marks'), __('Maximum number of badges shown on shop and category listings.', 'marks'), $settings, 1);
+                        ?>
                     </tbody>
                 </table>
 
@@ -172,7 +235,7 @@ final class Settings implements HasHooks
                     </tbody>
                 </table>
 
-                <?php do_action( 'marks_admin_settings_after_manual_table', $settings ); ?>
+                <?php do_action('marks_admin_settings_after_manual_table', $settings); ?>
 
                 <?php submit_button(); ?>
             </form>
@@ -208,6 +271,77 @@ final class Settings implements HasHooks
     }
 
     /**
+     * Render a number input row, clamped to a minimum.
+     *
+     * @param array<string, mixed> $settings
+     */
+    private function numberRow(string $key, string $label, string $help, array $settings, int $min): void
+    {
+        $id = 'marks_' . $key;
+        ?>
+        <tr>
+            <th scope="row">
+                <label for="<?php echo esc_attr($id); ?>"><?php echo esc_html($label); ?></label>
+            </th>
+            <td>
+                <input
+                    type="number"
+                    min="<?php echo esc_attr((string) $min); ?>"
+                    step="1"
+                    id="<?php echo esc_attr($id); ?>"
+                    name="<?php echo esc_attr(self::OPTION); ?>[<?php echo esc_attr($key); ?>]"
+                    value="<?php echo esc_attr((string) (int) ($settings[$key] ?? $min)); ?>"
+                    class="small-text"
+                />
+                <p class="description"><?php echo esc_html($help); ?></p>
+            </td>
+        </tr>
+        <?php
+    }
+
+    /**
+     * Render an automatic-badge row: an enable toggle plus an optional custom
+     * label field. The key uses the engine's `show_<rule>_badge` / `<rule>_badge_text`
+     * naming.
+     *
+     * @param array<string, mixed> $settings
+     */
+    private function autoBadgeRow(string $rule, string $label, string $help, array $settings, bool $hasLabel): void
+    {
+        $toggleKey = 'show_' . $rule . '_badge';
+        $labelKey  = $rule . '_badge_text';
+        $toggleId  = 'marks_' . $toggleKey;
+        ?>
+        <tr>
+            <th scope="row"><?php echo esc_html($label); ?></th>
+            <td>
+                <label for="<?php echo esc_attr($toggleId); ?>">
+                    <input
+                        type="checkbox"
+                        id="<?php echo esc_attr($toggleId); ?>"
+                        name="<?php echo esc_attr(self::OPTION); ?>[<?php echo esc_attr($toggleKey); ?>]"
+                        value="1"
+                        <?php checked((bool) ($settings[$toggleKey] ?? false), true); ?>
+                    />
+                    <?php echo esc_html($help); ?>
+                </label>
+                <?php if ($hasLabel) : ?>
+                    <br />
+                    <input
+                        type="text"
+                        id="<?php echo esc_attr('marks_' . $labelKey); ?>"
+                        name="<?php echo esc_attr(self::OPTION); ?>[<?php echo esc_attr($labelKey); ?>]"
+                        value="<?php echo esc_attr((string) ($settings[$labelKey] ?? '')); ?>"
+                        class="regular-text"
+                        placeholder="<?php esc_attr_e('Custom label (optional)', 'marks'); ?>"
+                    />
+                <?php endif; ?>
+            </td>
+        </tr>
+        <?php
+    }
+
+    /**
      * Sanitises, validates and clamps the submitted settings before save.
      *
      * @param mixed $raw
@@ -225,19 +359,59 @@ final class Settings implements HasHooks
             $style = 'accent';
         }
 
+        $shape = isset($raw['shape']) ? sanitize_key((string) $raw['shape']) : 'pill';
+
+        if (! in_array($shape, self::SHAPES, true)) {
+            $shape = 'pill';
+        }
+
         $sanitized = [
-            'enabled'               => ! empty($raw['enabled']),
-            'show_sale_badge'       => ! empty($raw['show_sale_badge']),
-            'show_new_badge'        => ! empty($raw['show_new_badge']),
-            'show_low_stock_badge'  => ! empty($raw['show_low_stock_badge']),
-            'show_bestseller_badge' => ! empty($raw['show_bestseller_badge']),
-            'low_stock_threshold'   => max(1, isset($raw['low_stock_threshold']) ? (int) $raw['low_stock_threshold'] : 3),
-            'show_manual_badge'     => true,
-            'manual_badge_text'     => isset($raw['manual_badge_text']) ? sanitize_text_field((string) $raw['manual_badge_text']) : '',
-            'manual_badge_style'    => $style,
+            'enabled'         => ! empty($raw['enabled']),
+            'show_on_single'  => ! empty($raw['show_on_single']),
+            'show_on_loop'    => ! empty($raw['show_on_loop']),
+
+            'show_sale_badge'             => ! empty($raw['show_sale_badge']),
+            'show_new_badge'              => ! empty($raw['show_new_badge']),
+            'show_low_stock_badge'        => ! empty($raw['show_low_stock_badge']),
+            'show_bestseller_badge'       => ! empty($raw['show_bestseller_badge']),
+            'show_discount_percent_badge' => ! empty($raw['show_discount_percent_badge']),
+            'show_free_shipping_badge'    => ! empty($raw['show_free_shipping_badge']),
+            'show_out_of_stock_badge'     => ! empty($raw['show_out_of_stock_badge']),
+
+            'sale_badge_text'          => $this->text($raw, 'sale_badge_text'),
+            'new_badge_text'           => $this->text($raw, 'new_badge_text'),
+            'low_stock_badge_text'     => $this->text($raw, 'low_stock_badge_text'),
+            'bestseller_badge_text'    => $this->text($raw, 'bestseller_badge_text'),
+            'free_shipping_badge_text' => $this->text($raw, 'free_shipping_badge_text'),
+            'out_of_stock_badge_text'  => $this->text($raw, 'out_of_stock_badge_text'),
+
+            'newness_days'         => max(1, isset($raw['newness_days']) ? (int) $raw['newness_days'] : 30),
+            'low_stock_threshold'  => max(1, isset($raw['low_stock_threshold']) ? (int) $raw['low_stock_threshold'] : 3),
+            'bestseller_threshold' => max(1, isset($raw['bestseller_threshold']) ? (int) $raw['bestseller_threshold'] : 25),
+
+            'free_shipping_classes' => $this->text($raw, 'free_shipping_classes'),
+
+            'shape'             => $shape,
+            'uppercase'         => ! empty($raw['uppercase']),
+            'max_badges_single' => max(1, isset($raw['max_badges_single']) ? (int) $raw['max_badges_single'] : 4),
+            'max_badges_loop'   => max(1, isset($raw['max_badges_loop']) ? (int) $raw['max_badges_loop'] : 3),
+
+            'show_manual_badge'  => true,
+            'manual_badge_text'  => $this->text($raw, 'manual_badge_text'),
+            'manual_badge_style' => $style,
         ];
 
         return (array) apply_filters('marks_sanitize_settings', $sanitized, $raw);
+    }
+
+    /**
+     * Sanitise a single text field from the raw input.
+     *
+     * @param array<string, mixed> $raw
+     */
+    private function text(array $raw, string $key): string
+    {
+        return isset($raw[$key]) ? sanitize_text_field((string) $raw[$key]) : '';
     }
 
     /**

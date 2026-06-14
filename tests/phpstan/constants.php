@@ -21,7 +21,7 @@ namespace {
 
 namespace Marks {
     if (! defined('Marks\\VERSION')) {
-        define('Marks\\VERSION', '0.1.0');
+        define('Marks\\VERSION', '0.2.0');
     }
     if (! defined('Marks\\PLUGIN_FILE')) {
         define('Marks\\PLUGIN_FILE', '/tmp/marks/marks.php');

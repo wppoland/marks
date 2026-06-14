@@ -40,10 +40,12 @@ final class MarksService implements HasHooks
         $this->engine = new BadgeEngine(
             'badges',
             [
-                'sale'       => __('Sale', 'marks'),
-                'new'        => __('New', 'marks'),
-                'low_stock'  => __('Low stock', 'marks'),
-                'bestseller' => __('Bestseller', 'marks'),
+                'sale'          => __('Sale', 'marks'),
+                'new'           => __('New', 'marks'),
+                'low_stock'     => __('Low stock', 'marks'),
+                'bestseller'    => __('Bestseller', 'marks'),
+                'free_shipping' => __('Free shipping', 'marks'),
+                'out_of_stock'  => __('Out of stock', 'marks'),
             ],
             [
                 'manual_text'  => self::META_MANUAL_TEXT,
@@ -63,6 +65,7 @@ final class MarksService implements HasHooks
         if ($this->engine instanceof BadgeEngine) {
             $this->engine->registerHooks();
             add_action('wp_enqueue_scripts', [$this, 'enqueueAssets']);
+            add_shortcode('marks_badges', [$this, 'renderShortcode']);
             return;
         }
 
@@ -83,6 +86,92 @@ final class MarksService implements HasHooks
             [],
             \Marks\VERSION,
         );
+    }
+
+    /**
+     * Shortcode `[marks_badges]` — render a product's badge group anywhere.
+     *
+     * Attributes:
+     *  - `id`      Product ID. Defaults to the current global product, then to
+     *              the queried object on a single product page.
+     *  - `context` Render context: `single` (default) or `loop`.
+     *
+     * @param array<string, mixed>|string $atts
+     */
+    public function renderShortcode(mixed $atts): string
+    {
+        if (! $this->engine instanceof BadgeEngine || ! $this->isEnabled()) {
+            return '';
+        }
+
+        $atts = shortcode_atts(
+            [
+                'id'      => 0,
+                'context' => 'single',
+            ],
+            is_array($atts) ? $atts : [],
+            'marks_badges',
+        );
+
+        $product = $this->resolveProduct((int) $atts['id']);
+
+        if (! $product instanceof \WC_Product) {
+            return '';
+        }
+
+        $context = $atts['context'] === 'loop' ? 'loop' : 'single';
+        $badges  = $this->engine->getBadges($product, $context);
+
+        if ($badges === []) {
+            return '';
+        }
+
+        wp_enqueue_style(
+            'marks',
+            MARKS_URL . 'assets/css/badges.css',
+            [],
+            \Marks\VERSION,
+        );
+
+        $settings = $this->settings();
+
+        ob_start();
+        $this->renderTemplate('badges', [
+            'badges'    => $badges,
+            'context'   => $context,
+            'product'   => $product,
+            'shape'     => (string) ($settings['shape'] ?? 'pill'),
+            'uppercase' => (bool) ($settings['uppercase'] ?? false),
+        ]);
+
+        return (string) ob_get_clean();
+    }
+
+    /**
+     * Resolve a product for the shortcode: explicit ID, then the current global
+     * product, then the queried product on a single-product page.
+     */
+    private function resolveProduct(int $id): ?\WC_Product
+    {
+        if ($id > 0) {
+            $product = wc_get_product($id);
+
+            return $product instanceof \WC_Product ? $product : null;
+        }
+
+        global $product;
+
+        if ($product instanceof \WC_Product) {
+            return $product;
+        }
+
+        if (function_exists('is_product') && is_product()) {
+            $queried = wc_get_product(get_queried_object_id());
+
+            return $queried instanceof \WC_Product ? $queried : null;
+        }
+
+        return null;
     }
 
     private function isEnabled(): bool
