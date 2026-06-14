@@ -172,6 +172,8 @@ final class Settings implements HasHooks
                     </tbody>
                 </table>
 
+                <?php do_action( 'marks_admin_settings_after_manual_table', $settings ); ?>
+
                 <?php submit_button(); ?>
             </form>
         </div>
@@ -223,7 +225,7 @@ final class Settings implements HasHooks
             $style = 'accent';
         }
 
-        return [
+        $sanitized = [
             'enabled'               => ! empty($raw['enabled']),
             'show_sale_badge'       => ! empty($raw['show_sale_badge']),
             'show_new_badge'        => ! empty($raw['show_new_badge']),
@@ -234,6 +236,8 @@ final class Settings implements HasHooks
             'manual_badge_text'     => isset($raw['manual_badge_text']) ? sanitize_text_field((string) $raw['manual_badge_text']) : '',
             'manual_badge_style'    => $style,
         ];
+
+        return (array) apply_filters('marks_sanitize_settings', $sanitized, $raw);
     }
 
     /**
