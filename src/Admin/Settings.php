@@ -199,6 +199,13 @@ final class Settings implements HasHooks
                                     $this->autoBadgeRow('out_of_stock', __('Out of stock', 'marks'), __('On products that are out of stock.', 'marks'), $settings, true, __('Sets expectations before the click. Shown when WooCommerce reports the product as out of stock.', 'marks'));
                                     // Discount-percent badge text is computed (e.g. -20%), so no label field.
                                     $this->autoBadgeRow('discount_percent', __('Discount percent', 'marks'), __('Shows the sale discount as a percentage (e.g. -20%).', 'marks'), $settings, false, __('Calculates the saving from the regular and sale price automatically, e.g. -20%. Pairs well with — or instead of — the plain Sale badge.', 'marks'));
+                                    $this->checkboxRow(
+                                        'hide_woocommerce_sale_flash',
+                                        __('Hide theme “Sale!” flash', 'marks'),
+                                        __('Replace WooCommerce’s default sale flash with the Marks sale badge only.', 'marks'),
+                                        $settings,
+                                        __('Avoids two sale labels on one product card. Marks badges are CSS-only — they never reflow the page. Best used together with the Sale badge above.', 'marks'),
+                                    );
                                     ?>
                                 </tbody>
                             </table>
@@ -570,6 +577,7 @@ final class Settings implements HasHooks
             'show_discount_percent_badge' => ! empty($raw['show_discount_percent_badge']),
             'show_free_shipping_badge'    => ! empty($raw['show_free_shipping_badge']),
             'show_out_of_stock_badge'     => ! empty($raw['show_out_of_stock_badge']),
+            'hide_woocommerce_sale_flash' => ! empty($raw['hide_woocommerce_sale_flash']),
 
             'sale_badge_text'          => $this->text($raw, 'sale_badge_text'),
             'new_badge_text'           => $this->text($raw, 'new_badge_text'),

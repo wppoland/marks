@@ -66,6 +66,8 @@ final class MarksService implements HasHooks
             $this->engine->registerHooks();
             add_action('wp_enqueue_scripts', [$this, 'enqueueAssets']);
             add_shortcode('marks_badges', [$this, 'renderShortcode']);
+            add_filter('woocommerce_sale_flash', [$this, 'maybeHideNativeSaleFlash'], 10, 3);
+
             return;
         }
 
@@ -86,6 +88,25 @@ final class MarksService implements HasHooks
             [],
             \Marks\VERSION,
         );
+    }
+
+    /**
+     * When the merchant prefers a single sale treatment, hide WooCommerce's
+     * default “Sale!” flash so only the Marks badge shows.
+     */
+    public function maybeHideNativeSaleFlash(mixed $html, mixed $post, mixed $product): mixed
+    {
+        if (! $this->isEnabled()) {
+            return $html;
+        }
+
+        $settings = $this->settings();
+
+        if (empty($settings['hide_woocommerce_sale_flash']) || empty($settings['show_sale_badge'])) {
+            return $html;
+        }
+
+        return false;
     }
 
     /**

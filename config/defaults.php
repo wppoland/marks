@@ -25,6 +25,7 @@ return [
 
     // Automatic badge toggles.
     'show_sale_badge'             => true,
+    'hide_woocommerce_sale_flash' => false,
     'show_new_badge'              => true,
     'show_low_stock_badge'        => true,
     'show_bestseller_badge'       => true,

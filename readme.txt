@@ -4,7 +4,7 @@ Tags: woocommerce, product badges, sale badge, new badge, low stock
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 8.1
-Stable tag: 0.2.0
+Stable tag: 0.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -82,6 +82,10 @@ products that should display it.
 2. The Marks settings screen.
 
 == Changelog ==
+
+= 0.3.0 =
+* New: optional hide of the default WooCommerce sale flash when the Marks sale badge is enabled.
+* Admin settings help tooltips polish.
 
 = 0.2.0 =
 * Add Discount percent, Free shipping and Out of stock automatic badges.
