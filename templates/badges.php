@@ -34,8 +34,14 @@ $groupClasses = sprintf(
 ?>
 <div class="<?php echo esc_attr($groupClasses); ?>">
     <?php foreach ($badges as $badge) : ?>
-        <span class="marks-badge marks-badge--<?php echo esc_attr(sanitize_html_class($badge->style)); ?>">
-            <?php echo esc_html($badge->text); ?>
-        </span>
+        <?php if ( strpos( $badge->style, 'image' ) === 0 ) : ?>
+            <span class="marks-badge marks-badge--image">
+                <img src="<?php echo esc_url($badge->text); ?>" alt="" width="48" height="24" loading="lazy" decoding="async" />
+            </span>
+        <?php else : ?>
+            <span class="marks-badge marks-badge--<?php echo esc_attr(sanitize_html_class($badge->style)); ?>">
+                <?php echo esc_html($badge->text); ?>
+            </span>
+        <?php endif; ?>
     <?php endforeach; ?>
 </div>

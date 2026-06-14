@@ -1,23 +1,48 @@
 /**
- * Marks — CSS-only product badges.
+ * Marks — CSS-only product badges (storefront).
  *
- * Absolutely positioned over the product image so badges never reflow the
- * layout (no Cumulative Layout Shift). Colours map to the engine's style keys
- * (accent, success, warning, danger, neutral) and can be overridden by themes
- * via the --marks-* custom properties.
+ * Badges are absolutely positioned over the product image so they never reflow
+ * the layout (zero Cumulative Layout Shift) and never cause a flash of unstyled
+ * content. Every colour, size, gap and radius is a CSS custom property under the
+ * `--marks-*` namespace, so themes can re-skin badges without touching markup.
+ *
+ * Progressive enhancement only: container queries and :has() refine the layout
+ * where supported and degrade gracefully where they are not. Motion is opt-in
+ * and always disabled under prefers-reduced-motion.
  */
 
 .marks-badges {
+	/* Themeable design tokens (override any of these in your theme). */
+	--marks-gap: 0.35rem;
+	--marks-inset: clamp(0.4rem, 1.5vw, 0.6rem);
+	--marks-radius: 999px;
+	--marks-radius-square: 4px;
+	--marks-pad-block: 0.25em;
+	--marks-pad-inline: 0.6em;
+	--marks-font-size: clamp(0.68rem, 0.62rem + 0.3vw, 0.8rem);
+	--marks-font-weight: 600;
+	--marks-fg: #fff;
+	--marks-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+
+	/* Default style swatches (semantic colour keys). */
+	--marks-bg: #2c3338;
+	--marks-bg-accent: #2271b1;
+	--marks-bg-success: #1a7f37;
+	--marks-bg-warning: #bb6b00;
+	--marks-bg-danger: #b32d2e;
+	--marks-bg-neutral: #50575e;
+
 	position: absolute;
-	top: 0.5rem;
-	left: 0.5rem;
+	inset-block-start: var(--marks-inset);
+	inset-inline-start: var(--marks-inset);
 	z-index: 2;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	gap: 0.35rem;
+	gap: var(--marks-gap);
 	margin: 0;
 	padding: 0;
+	max-inline-size: calc(100% - (var(--marks-inset) * 2));
 	pointer-events: none;
 }
 
@@ -28,19 +53,25 @@
 }
 
 .marks-badge {
-	display: inline-block;
-	padding: 0.2em 0.6em;
-	font-size: 0.75rem;
-	font-weight: 600;
+	display: inline-flex;
+	align-items: center;
+	max-inline-size: 100%;
+	padding-block: var(--marks-pad-block);
+	padding-inline: var(--marks-pad-inline);
+	font-size: var(--marks-font-size);
+	font-weight: var(--marks-font-weight);
 	line-height: 1.4;
-	color: var(--marks-fg, #fff);
-	background: var(--marks-bg, #2c3338);
-	border-radius: 999px;
+	color: var(--marks-fg);
+	background: var(--marks-bg);
+	border-radius: var(--marks-radius);
+	box-shadow: var(--marks-shadow);
 	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .marks-badges--square .marks-badge {
-	border-radius: 3px;
+	border-radius: var(--marks-radius-square);
 }
 
 .marks-badges--upper .marks-badge {
@@ -48,22 +79,85 @@
 	letter-spacing: 0.03em;
 }
 
+/* Image badge: reserve a fixed box so the image swap never shifts layout. */
+.marks-badge--image {
+	padding: 0;
+	background: transparent;
+	box-shadow: none;
+	block-size: 24px;
+}
+
+.marks-badge--image img {
+	display: block;
+	block-size: 24px;
+	inline-size: auto;
+	max-inline-size: 100%;
+	object-fit: contain;
+}
+
+/* Semantic colour keys. */
 .marks-badge--accent {
-	--marks-bg: #2271b1;
+	background: var(--marks-bg-accent);
 }
 
 .marks-badge--success {
-	--marks-bg: #1a7f37;
+	background: var(--marks-bg-success);
 }
 
 .marks-badge--warning {
-	--marks-bg: #bb6b00;
+	background: var(--marks-bg-warning);
 }
 
 .marks-badge--danger {
-	--marks-bg: #b32d2e;
+	background: var(--marks-bg-danger);
 }
 
 .marks-badge--neutral {
-	--marks-bg: #50575e;
+	background: var(--marks-bg-neutral);
+}
+
+/*
+ * Progressive enhancement: where the browser supports container queries, scale
+ * badge sizing to the product cell instead of the viewport. Falls back silently.
+ */
+@supports (container-type: inline-size) {
+	.woocommerce ul.products li.product,
+	.woocommerce div.product div.images {
+		container-type: inline-size;
+	}
+
+	@container (max-inline-size: 200px) {
+		.marks-badges {
+			--marks-gap: 0.25rem;
+			--marks-font-size: 0.68rem;
+		}
+	}
+}
+
+/* Subtle entrance — only for users who have not asked to reduce motion. */
+@media (prefers-reduced-motion: no-preference) {
+	.marks-badge {
+		animation: marks-badge-in 0.32s ease both;
+		transition: transform 0.18s ease;
+	}
+
+	@keyframes marks-badge-in {
+		from {
+			opacity: 0;
+			transform: translateY(-0.2rem);
+		}
+
+		to {
+			opacity: 1;
+			transform: none;
+		}
+	}
+}
+
+/* Honour dark themes: lift the default neutral so badges stay legible. */
+@media (prefers-color-scheme: dark) {
+	.marks-badges {
+		--marks-bg: #3c434a;
+		--marks-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+	}
 }

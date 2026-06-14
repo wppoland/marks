@@ -1,0 +1,250 @@
+/**
+ * Marks — admin settings screen.
+ *
+ * A polished, themeable layer on top of the WordPress settings UI. Tokens live
+ * under --marks-a-* so the look can be tuned in one place. Transitions are gated
+ * behind prefers-reduced-motion and colours adapt to the admin colour scheme via
+ * prefers-color-scheme.
+ */
+
+.marks-admin {
+	--marks-a-accent: #2271b1;
+	--marks-a-radius: 10px;
+	--marks-a-radius-sm: 6px;
+	--marks-a-gap: clamp(1rem, 2vw, 1.5rem);
+	--marks-a-card-bg: #fff;
+	--marks-a-card-border: #dcdcde;
+	--marks-a-muted: #646970;
+	--marks-a-help-bg: #2c3338;
+	--marks-a-help-fg: #fff;
+
+	max-inline-size: 1100px;
+}
+
+/* Intro card. */
+.marks-intro {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem 1.5rem;
+	align-items: center;
+	justify-content: space-between;
+	margin-block: 1rem 1.5rem;
+	padding: clamp(1rem, 2.5vw, 1.5rem);
+	background: var(--marks-a-card-bg);
+	border: 1px solid var(--marks-a-card-border);
+	border-inline-start: 4px solid var(--marks-a-accent);
+	border-radius: var(--marks-a-radius);
+}
+
+.marks-intro p {
+	margin: 0.25rem 0 0;
+	max-inline-size: 60ch;
+	color: var(--marks-a-muted);
+}
+
+.marks-intro h2 {
+	margin: 0;
+	font-size: 1.05rem;
+}
+
+/* Two-column layout: settings + sticky live preview. */
+.marks-layout {
+	display: grid;
+	gap: var(--marks-a-gap);
+	grid-template-columns: 1fr;
+}
+
+@media (min-width: 1100px) {
+	.marks-layout {
+		grid-template-columns: minmax(0, 1fr) 320px;
+		align-items: start;
+	}
+}
+
+/* Section cards. */
+.marks-card {
+	margin: 0;
+	padding: clamp(1rem, 2.5vw, 1.5rem);
+	background: var(--marks-a-card-bg);
+	border: 1px solid var(--marks-a-card-border);
+	border-radius: var(--marks-a-radius);
+}
+
+.marks-card + .marks-card {
+	margin-block-start: var(--marks-a-gap);
+}
+
+.marks-card > h2 {
+	margin-block-start: 0;
+}
+
+.marks-card .description {
+	max-inline-size: 70ch;
+}
+
+.marks-card .form-table {
+	margin-block-start: 0.5rem;
+}
+
+/* Inline help: a "?" affordance that toggles an accessible popover. */
+.marks-help {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	inline-size: 18px;
+	block-size: 18px;
+	margin-inline-start: 6px;
+	padding: 0;
+	font-size: 12px;
+	font-weight: 700;
+	line-height: 1;
+	color: var(--marks-a-help-fg);
+	background: var(--marks-a-muted);
+	border: 0;
+	border-radius: 50%;
+	cursor: help;
+	vertical-align: middle;
+	anchor-name: revert;
+}
+
+.marks-help:hover,
+.marks-help:focus-visible {
+	background: var(--marks-a-accent);
+}
+
+.marks-help:focus-visible {
+	outline: 2px solid var(--marks-a-accent);
+	outline-offset: 2px;
+}
+
+.marks-tip {
+	max-inline-size: 280px;
+	margin: 0;
+	padding: 0.6rem 0.75rem;
+	font-size: 13px;
+	line-height: 1.5;
+	color: var(--marks-a-help-fg);
+	background: var(--marks-a-help-bg);
+	border: 0;
+	border-radius: var(--marks-a-radius-sm);
+	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Live preview panel. */
+.marks-preview {
+	position: sticky;
+	inset-block-start: 46px;
+}
+
+.marks-preview__stage {
+	position: relative;
+	display: grid;
+	place-items: center;
+	min-block-size: 200px;
+	margin-block: 0.75rem;
+	background:
+		linear-gradient(45deg, #f0f0f1 25%, transparent 25%) -8px 0 / 16px 16px,
+		linear-gradient(-45deg, #f0f0f1 25%, transparent 25%) -8px 0 / 16px 16px,
+		linear-gradient(45deg, transparent 75%, #f0f0f1 75%) / 16px 16px,
+		linear-gradient(-45deg, transparent 75%, #f0f0f1 75%) / 16px 16px,
+		#fff;
+	border: 1px dashed var(--marks-a-card-border);
+	border-radius: var(--marks-a-radius-sm);
+}
+
+.marks-preview__badges {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem;
+	padding: 0.75rem;
+}
+
+.marks-preview__badge {
+	display: inline-flex;
+	align-items: center;
+	padding: 0.25em 0.6em;
+	font-size: 0.78rem;
+	font-weight: 600;
+	line-height: 1.4;
+	color: #fff;
+	border-radius: 999px;
+	white-space: nowrap;
+}
+
+.marks-preview--square .marks-preview__badge {
+	border-radius: 4px;
+}
+
+.marks-preview--upper .marks-preview__badge {
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+}
+
+.marks-preview__badge--accent {
+	background: #2271b1;
+}
+
+.marks-preview__badge--success {
+	background: #1a7f37;
+}
+
+.marks-preview__badge--warning {
+	background: #bb6b00;
+}
+
+.marks-preview__badge--danger {
+	background: #b32d2e;
+}
+
+.marks-preview__badge--neutral {
+	background: #50575e;
+}
+
+.marks-preview__empty {
+	margin: 0;
+	padding: 1rem;
+	color: var(--marks-a-muted);
+	text-align: center;
+}
+
+.marks-preview__hint {
+	margin: 0;
+	font-size: 12px;
+	color: var(--marks-a-muted);
+}
+
+/* WooCommerce-missing empty state. */
+.marks-empty {
+	display: grid;
+	gap: 0.5rem;
+	justify-items: start;
+	margin-block: 1.5rem;
+	padding: clamp(1.25rem, 3vw, 2rem);
+	background: var(--marks-a-card-bg);
+	border: 1px solid var(--marks-a-card-border);
+	border-radius: var(--marks-a-radius);
+}
+
+.marks-empty h2 {
+	margin: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.marks-help,
+	.marks-preview__badge {
+		transition: background-color 0.15s ease, transform 0.15s ease;
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	.marks-admin {
+		--marks-a-card-bg: #1e1e1e;
+		--marks-a-card-border: #3c434a;
+		--marks-a-muted: #a7aaad;
+	}
+
+	.marks-preview__stage {
+		background: #2c3338;
+		border-color: #3c434a;
+	}
+}
