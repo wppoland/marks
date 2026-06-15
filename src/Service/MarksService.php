@@ -23,6 +23,14 @@ final class MarksService implements HasHooks
     private const META_MANUAL_TEXT  = '_marks_manual_text';
     private const META_MANUAL_STYLE = '_marks_manual_style';
 
+    /**
+     * Prefixed meta key for the engine's optional "secondary" manual badge.
+     * Marks keeps that feature disabled (see config/defaults.php), but mapping the
+     * key here ensures the engine never reads an unprefixed/generic meta key even
+     * if the setting is toggled on by a filter.
+     */
+    private const META_SECONDARY_TEXT = '_marks_secondary_text';
+
     private ?BadgeEngine $engine = null;
 
     public function __construct()
@@ -45,8 +53,9 @@ final class MarksService implements HasHooks
                 'out_of_stock'  => __('Out of stock', 'marks'),
             ],
             [
-                'manual_text'  => self::META_MANUAL_TEXT,
-                'manual_style' => self::META_MANUAL_STYLE,
+                'manual_text'    => self::META_MANUAL_TEXT,
+                'manual_style'   => self::META_MANUAL_STYLE,
+                'secondary_text' => self::META_SECONDARY_TEXT,
             ],
             fn (): bool => $this->isEnabled(),
             fn (): array => $this->settings(),
