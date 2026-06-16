@@ -37,7 +37,7 @@
 	 * deliberate, non-default choice that grounds badges in the stamping world.
 	 * Themes can re-ink everything by overriding --marks-ink alone.
 	 */
-	--marks-ink: #d8361f;
+	--marks-ink: #c52d1a;
 	--marks-ink-deep: #a8240f;
 
 	--marks-fg: #fff;
@@ -51,8 +51,8 @@
 	   carries the signature ink; semantic keys stay legible and conventional. */
 	--marks-bg: var(--marks-ink);
 	--marks-bg-accent: var(--marks-ink);
-	--marks-bg-success: #1a7f37;
-	--marks-bg-warning: #bb6b00;
+	--marks-bg-success: #156e30;
+	--marks-bg-warning: #945600;
 	--marks-bg-danger: #b32d2e;
 	--marks-bg-neutral: #2c3338;
 
@@ -242,8 +242,8 @@
    labels stay legible against dark product backdrops. */
 @media (prefers-color-scheme: dark) {
 	.marks-badges {
-		--marks-ink: #e8492f;
-		--marks-ink-deep: #c2331b;
+		--marks-ink: #cf2d15;
+		--marks-ink-deep: #b3260f;
 		--marks-bg-neutral: #3c434a;
 		--marks-shadow:
 			0 1px 0 rgba(0, 0, 0, 0.4),
