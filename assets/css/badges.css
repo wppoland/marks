@@ -1,10 +1,19 @@
 /**
  * Marks — CSS-only product badges (storefront).
  *
- * Badges are absolutely positioned over the product image so they never reflow
- * the layout (zero Cumulative Layout Shift) and never cause a flash of unstyled
- * content. Every colour, size, gap and radius is a CSS custom property under the
- * `--marks-*` namespace, so themes can re-skin badges without touching markup.
+ * The plugin's world is labelling and stamping: a badge is a small label
+ * pressed onto the product image. Badges are absolutely positioned over the
+ * image so they never reflow the layout (zero Cumulative Layout Shift) and
+ * never cause a flash of unstyled content. Every colour, size, gap and radius
+ * is a CSS custom property under the `--marks-*` namespace, so themes can
+ * re-skin badges without touching markup.
+ *
+ * The signature accent is an inked vermilion — the colour of a rubber sale
+ * stamp pressed in ink, not a generic UI blue. The one earned micro-interaction
+ * is the "press": each badge lands like a stamp making contact with the image
+ * (a brief over-press that settles), and each label carries a die-cut peel-lift
+ * corner so it reads as a physical label adhered to the photo rather than a
+ * flat pill.
  *
  * Progressive enhancement only: container queries and :has() refine the layout
  * where supported and degrade gracefully where they are not. Motion is opt-in
@@ -13,24 +22,39 @@
 
 .marks-badges {
 	/* Themeable design tokens (override any of these in your theme). */
-	--marks-gap: 0.35rem;
+	--marks-gap: 0.4rem;
 	--marks-inset: clamp(0.4rem, 1.5vw, 0.6rem);
 	--marks-radius: 999px;
-	--marks-radius-square: 4px;
-	--marks-pad-block: 0.25em;
-	--marks-pad-inline: 0.6em;
+	--marks-radius-square: 3px;
+	--marks-pad-block: 0.3em;
+	--marks-pad-inline: 0.7em;
 	--marks-font-size: clamp(0.68rem, 0.62rem + 0.3vw, 0.8rem);
-	--marks-font-weight: 600;
-	--marks-fg: #fff;
-	--marks-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+	--marks-font-weight: 700;
 
-	/* Default style swatches (semantic colour keys). */
-	--marks-bg: #2c3338;
-	--marks-bg-accent: #2271b1;
+	/*
+	 * Signature accent — inked vermilion. This is the colour of a rubber stamp
+	 * pressed into red ink (the classic "SALE" / "PAID" stamp). It is the one
+	 * deliberate, non-default choice that grounds badges in the stamping world.
+	 * Themes can re-ink everything by overriding --marks-ink alone.
+	 */
+	--marks-ink: #d8361f;
+	--marks-ink-deep: #a8240f;
+
+	--marks-fg: #fff;
+	/* Two-layer shadow: a tight contact line plus a soft lift, so the label
+	   reads as adhered to the image, not floating above it. */
+	--marks-shadow:
+		0 1px 0 rgba(0, 0, 0, 0.12),
+		0 2px 5px rgba(0, 0, 0, 0.22);
+
+	/* Default style swatches (semantic colour keys). The primary/unkeyed badge
+	   carries the signature ink; semantic keys stay legible and conventional. */
+	--marks-bg: var(--marks-ink);
+	--marks-bg-accent: var(--marks-ink);
 	--marks-bg-success: #1a7f37;
 	--marks-bg-warning: #bb6b00;
 	--marks-bg-danger: #b32d2e;
-	--marks-bg-neutral: #50575e;
+	--marks-bg-neutral: #2c3338;
 
 	position: absolute;
 	inset-block-start: var(--marks-inset);
@@ -53,6 +77,7 @@
 }
 
 .marks-badge {
+	position: relative;
 	display: inline-flex;
 	align-items: center;
 	max-inline-size: 100%;
@@ -60,7 +85,7 @@
 	padding-inline: var(--marks-pad-inline);
 	font-size: var(--marks-font-size);
 	font-weight: var(--marks-font-weight);
-	line-height: 1.4;
+	line-height: 1.35;
 	color: var(--marks-fg);
 	background: var(--marks-bg);
 	border-radius: var(--marks-radius);
@@ -68,6 +93,33 @@
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	/* Crisp, stamped letterforms. */
+	letter-spacing: 0.01em;
+	transform-origin: top left;
+}
+
+/*
+ * Die-cut peel-lift corner. A soft highlight on the top-left and a faint
+ * shadow line read as a physical label whose corner has lifted off the image —
+ * the tactile "this was stuck on" cue. Purely decorative, drawn with a single
+ * pseudo-element gradient so it costs no markup and never shifts layout.
+ */
+.marks-badge::before {
+	content: "";
+	position: absolute;
+	inset-block-start: 0;
+	inset-inline-start: 0;
+	inline-size: 0.85em;
+	block-size: 0.85em;
+	pointer-events: none;
+	background:
+		linear-gradient(
+			135deg,
+			rgba(255, 255, 255, 0.42) 0%,
+			rgba(255, 255, 255, 0.1) 38%,
+			transparent 62%
+		);
+	border-start-start-radius: inherit;
 }
 
 .marks-badges--square .marks-badge {
@@ -76,7 +128,7 @@
 
 .marks-badges--upper .marks-badge {
 	text-transform: uppercase;
-	letter-spacing: 0.03em;
+	letter-spacing: 0.06em;
 }
 
 /* Image badge: reserve a fixed box so the image swap never shifts layout. */
@@ -85,6 +137,10 @@
 	background: transparent;
 	box-shadow: none;
 	block-size: 24px;
+}
+
+.marks-badge--image::before {
+	display: none;
 }
 
 .marks-badge--image img {
@@ -128,36 +184,69 @@
 
 	@container (max-inline-size: 200px) {
 		.marks-badges {
-			--marks-gap: 0.25rem;
+			--marks-gap: 0.3rem;
 			--marks-font-size: 0.68rem;
 		}
 	}
 }
 
-/* Subtle entrance — only for users who have not asked to reduce motion. */
+/*
+ * THE MOMENT — the stamp press.
+ *
+ * Each badge lands like a rubber stamp making contact with the image: it
+ * arrives slightly rotated and oversized, then presses down and squares up,
+ * settling onto the photo. The press is transform/opacity only, so there is
+ * zero layout shift. Badges stagger so a second/third label reads as stamped
+ * one after another. Only for users who have not asked to reduce motion.
+ */
 @media (prefers-reduced-motion: no-preference) {
 	.marks-badge {
-		animation: marks-badge-in 0.32s ease both;
-		transition: transform 0.18s ease;
+		animation: marks-stamp-press 0.42s cubic-bezier(0.2, 0.9, 0.25, 1.2) both;
 	}
 
-	@keyframes marks-badge-in {
-		from {
+	.marks-badge:nth-child(2) {
+		animation-delay: 0.09s;
+	}
+
+	.marks-badge:nth-child(3) {
+		animation-delay: 0.18s;
+	}
+
+	.marks-badge:nth-child(n + 4) {
+		animation-delay: 0.27s;
+	}
+
+	@keyframes marks-stamp-press {
+		0% {
 			opacity: 0;
-			transform: translateY(-0.2rem);
+			transform: scale(1.28) rotate(-4deg);
 		}
 
-		to {
+		55% {
 			opacity: 1;
-			transform: none;
+			transform: scale(0.94) rotate(0.5deg);
+		}
+
+		78% {
+			transform: scale(1.03) rotate(0deg);
+		}
+
+		100% {
+			opacity: 1;
+			transform: scale(1) rotate(0deg);
 		}
 	}
 }
 
-/* Honour dark themes: lift the default neutral so badges stay legible. */
+/* Honour dark themes: deepen the ink and lift the contact shadow so stamped
+   labels stay legible against dark product backdrops. */
 @media (prefers-color-scheme: dark) {
 	.marks-badges {
-		--marks-bg: #3c434a;
-		--marks-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+		--marks-ink: #e8492f;
+		--marks-ink-deep: #c2331b;
+		--marks-bg-neutral: #3c434a;
+		--marks-shadow:
+			0 1px 0 rgba(0, 0, 0, 0.4),
+			0 2px 6px rgba(0, 0, 0, 0.5);
 	}
 }
