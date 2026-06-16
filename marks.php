@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       Marks
+ * Plugin Name:       Marks - Product Badges for WooCommerce
  * Plugin URI:        https://plogins.com/marks/
  * Description:        Automatic and manual product badges for WooCommerce (sale, new, low-stock, bestseller) — CSS-only, no layout shift
  * Version:           0.3.0
