@@ -8,7 +8,18 @@
  */
 
 .marks-admin {
-	--marks-a-accent: #2271b1;
+	/*
+	 * Section accent — the storefront "inked vermilion" (#c52d1a), brought into
+	 * the admin as one restrained family-brand touch (the section rule + help
+	 * affordance), so the settings screen reads as the same product as the
+	 * badges it configures. Everything else stays native WordPress.
+	 *
+	 * Contrast (computed, WCAG AA): #c52d1a vs #fff = 5.58:1 and vs the wp-admin
+	 * grey #f0f0f1 = 4.90:1 — both clear AA text (4.5:1) and UI (3:1); #fff text
+	 * on the accent = 5.58:1. Dark scheme lightens to #e8543f (4.58:1 on the dark
+	 * card) so it never drops below the UI floor.
+	 */
+	--marks-a-accent: #c52d1a;
 	--marks-a-radius: 10px;
 	--marks-a-radius-sm: 6px;
 	--marks-a-gap: clamp(1rem, 2vw, 1.5rem);
@@ -180,16 +191,23 @@
 	letter-spacing: 0.03em;
 }
 
+/*
+ * Preview chips mirror the real storefront badge palette so the preview is
+ * truthful, not decorative. Accent is the signature inked vermilion (matching
+ * --marks-bg-accent on the storefront); each carries #fff text. Computed white-
+ * on-fill contrast (WCAG AA, 4.5:1): accent 5.58, success 6.35, warning 5.85,
+ * danger 6.30, neutral 12.82.
+ */
 .marks-preview__badge--accent {
-	background: #2271b1;
+	background: #c52d1a;
 }
 
 .marks-preview__badge--success {
-	background: #1a7f37;
+	background: #156e30;
 }
 
 .marks-preview__badge--warning {
-	background: #bb6b00;
+	background: #945600;
 }
 
 .marks-preview__badge--danger {
@@ -197,7 +215,7 @@
 }
 
 .marks-preview__badge--neutral {
-	background: #50575e;
+	background: #2c3338;
 }
 
 .marks-preview__empty {
@@ -238,6 +256,9 @@
 
 @media (prefers-color-scheme: dark) {
 	.marks-admin {
+		/* Lightened vermilion keeps the family accent above the AA UI floor on
+		   the dark card: #e8543f vs #1e1e1e = 4.58:1. */
+		--marks-a-accent: #e8543f;
 		--marks-a-card-bg: #1e1e1e;
 		--marks-a-card-border: #3c434a;
 		--marks-a-muted: #a7aaad;

@@ -311,7 +311,7 @@ final class Settings implements HasHooks
                                     <tr>
                                         <th scope="row">
                                             <label for="marks_manual_badge_style"><?php esc_html_e('Manual badge colour', 'marks'); ?></label>
-                                            <?php $this->help(__('Pick a semantic colour. Accent uses your store blue, Success green, Warning amber, Danger red, Neutral grey. Exact shades are themeable via the --marks-bg-* variables.', 'marks')); ?>
+                                            <?php $this->help(__('Pick a semantic colour. Accent is the Marks signature ink (a vermilion red), Success green, Warning amber, Danger red, Neutral grey. The preview on the right shows each. Exact shades are themeable via the --marks-bg-* variables.', 'marks')); ?>
                                         </th>
                                         <td>
                                             <select
