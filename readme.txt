@@ -8,18 +8,21 @@ Stable tag: 0.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Automatic and manual product badges for WooCommerce — CSS-only, no layout shift.
+CSS-only product badges for WooCommerce: Sale, New, Low stock, Bestseller and a manual badge. No JavaScript, no layout shift.
 
 == Description ==
 
-Marks adds product badges to your WooCommerce storefront. Automatic badges appear
-on their own based on each product's state — **Sale**, **New**, **Low stock** and
-**Bestseller** — and you can attach a single manual badge to individual products
-via a store-wide label and colour.
+Marks puts badges on your WooCommerce products. Some appear on their own from each
+product's current state (**Sale**, **New**, **Low stock**, **Bestseller**, and a few
+others), and you can also set one manual badge per product using a store-wide label
+and colour.
 
-Badges render with plain CSS — no JavaScript — and are positioned over the product
-image so they never reflow the layout (no Cumulative Layout Shift). They show on
-both the single product page and shop/category listings.
+The badges are drawn with CSS and sit over the product image, so they add no
+JavaScript and don't shift the layout when the page loads. They show on the single
+product page and on shop, category and tag listings.
+
+The code is open and lives at https://github.com/wppoland/marks if you want to read
+it, file a bug or send a patch.
 
 Configuration lives under a top-level **Marks** admin menu: a global on/off
 toggle, placement controls, per-rule toggles with custom labels, thresholds, an
@@ -36,16 +39,17 @@ label and colour. Settings are sanitised and clamped on save.
 * Appearance controls: pill or square shape, uppercase, and a per-context badge cap.
 * `[marks_badges]` shortcode to place badges anywhere.
 * A single manual badge (label + colour) shown per product via meta.
-* CSS-only rendering — no JavaScript, no layout shift.
+* CSS-only rendering: no JavaScript, no layout shift.
 * Global on/off toggle and per-rule toggles.
 * Translation ready (POT included) and clean uninstall.
 * HPOS and cart/checkout blocks compatible.
 
 = The [marks_badges] shortcode =
 
-Place a product's badge group anywhere with `[marks_badges]`. It uses the current
-product in product loops and on the single product page. Pass `id` to target a
-specific product and `context` (`single` or `loop`) to switch the render style:
+Use `[marks_badges]` to drop a product's badges into any page, post or widget. With
+no attributes it uses the current product (inside a loop or on a single product
+page). Pass `id` to target a specific product and `context` (`single` or `loop`) to
+pick the render style:
 
 `[marks_badges id="123" context="loop"]`
 
