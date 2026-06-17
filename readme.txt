@@ -85,6 +85,12 @@ products that should display it.
 1. Automatic badges on a shop listing.
 2. The Marks settings screen.
 
+== External Services ==
+
+Marks does not connect to any external services. Badges are computed and drawn entirely on your own server from WooCommerce data already in your database (price, stock, sales, product dates and shipping class), and the badge CSS is served from the plugin's own assets.
+
+The plugin stores its configuration in two WordPress options (`marks_settings` and `marks_db_version`) and reads per-product post meta (`_marks_manual_text` and `_marks_manual_style`) for the manual badge. No visitor or store data is sent anywhere, and Marks does not call home, load remote scripts or fonts, or send email.
+
 == Changelog ==
 
 = 0.3.0 =
