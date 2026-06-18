@@ -29,6 +29,15 @@ toggle, placement controls, per-rule toggles with custom labels, thresholds, an
 appearance section (shape, uppercase, per-context caps) and the manual badge
 label and colour. Settings are sanitised and clamped on save.
 
+= Documentation and links =
+
+* **Documentation** - https://plogins.com/marks/docs/
+* **Plugin page** - https://plogins.com/marks/
+* **Source code** - https://github.com/wppoland/marks
+* **Bug reports and feature requests** - https://github.com/wppoland/marks/issues
+* **Discussions and questions** - https://github.com/wppoland/marks/discussions
+
+
 = Features =
 
 * Automatic badges: Sale, New, Low stock, Bestseller, Discount percent, Free shipping, Out of stock.
