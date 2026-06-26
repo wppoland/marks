@@ -26,7 +26,7 @@ msgstr ""
 
 #. Description of the plugin
 #: marks.php
-msgid "Automatic and manual product badges for WooCommerce (sale, new, low-stock, bestseller) — CSS-only, no layout shift"
+msgid "Automatic and manual product badges for WooCommerce (sale, new, low-stock, bestseller), CSS-only, no layout shift"
 msgstr ""
 
 #. Author of the plugin
@@ -56,7 +56,7 @@ msgid "Product badges that boost conversions"
 msgstr ""
 
 #: src/Admin/Settings.php:125
-msgid "Badges highlight what makes a product worth buying — a sale, a fresh arrival, low stock or a bestseller. They are pure CSS, so they load instantly and never shift your layout. Configure them below; the live preview on the right updates as you type."
+msgid "Badges highlight what makes a product worth buying, a sale, a fresh arrival, low stock or a bestseller. They are pure CSS, so they load instantly and never shift your layout. Configure them below; the live preview on the right updates as you type."
 msgstr ""
 
 #: src/Admin/Settings.php:136
@@ -68,7 +68,7 @@ msgid "Enable badges"
 msgstr ""
 
 #: src/Admin/Settings.php:142
-msgid "The master switch. When off, no badges render anywhere on your storefront and the badge stylesheet is not loaded — zero front-end impact."
+msgid "The master switch. When off, no badges render anywhere on your storefront and the badge stylesheet is not loaded, zero front-end impact."
 msgstr ""
 
 #: src/Admin/Settings.php:153
@@ -110,7 +110,7 @@ msgid "Automatic badges"
 msgstr ""
 
 #: src/Admin/Settings.php:189
-msgid "These appear on their own based on each product's live state — no manual tagging needed. Tick the ones you want and, optionally, give them your own wording. Leave a label blank to use the translated default."
+msgid "These appear on their own based on each product's live state, no manual tagging needed. Tick the ones you want and, optionally, give them your own wording. Leave a label blank to use the translated default."
 msgstr ""
 
 #: src/Admin/Settings.php:194
@@ -203,7 +203,7 @@ msgid "Shows the sale discount as a percentage (e.g. -20%)."
 msgstr ""
 
 #: src/Admin/Settings.php:201
-msgid "Calculates the saving from the regular and sale price automatically, e.g. -20%. Pairs well with — or instead of — the plain Sale badge."
+msgid "Calculates the saving from the regular and sale price automatically, e.g. -20%. Pairs well with, or instead of, the plain Sale badge."
 msgstr ""
 
 #: src/Admin/Settings.php:204
@@ -215,7 +215,7 @@ msgid "Replace WooCommerce’s default sale flash with the Marks sale badge only
 msgstr ""
 
 #: src/Admin/Settings.php:207
-msgid "Avoids two sale labels on one product card. Marks badges are CSS-only — they never reflow the page. Best used together with the Sale badge above."
+msgid "Avoids two sale labels on one product card. Marks badges are CSS-only, they never reflow the page. Best used together with the Sale badge above."
 msgstr ""
 
 #: src/Admin/Settings.php:215
@@ -337,7 +337,7 @@ msgstr ""
 #. translators: %s: meta key wrapped in <code>.
 #: src/Admin/Settings.php:288
 #, php-format
-msgid "Define one store-wide badge (label + colour). Leave the label empty to disable it. To show it on a specific product, set the %s product meta — handy for \"Editor's pick\" or \"Staff favourite\" flags."
+msgid "Define one store-wide badge (label + colour). Leave the label empty to disable it. To show it on a specific product, set the %s product meta, handy for \"Editor's pick\" or \"Staff favourite\" flags."
 msgstr ""
 
 #: src/Admin/Settings.php:297
@@ -373,7 +373,7 @@ msgid "A sample of how your badges will look on a product image."
 msgstr ""
 
 #: src/Admin/Settings.php:368
-msgid "No badges enabled yet — tick some on the left to see them here."
+msgid "No badges enabled yet, tick some on the left to see them here."
 msgstr ""
 
 #: src/Admin/Settings.php:385

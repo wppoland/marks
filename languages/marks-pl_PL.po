@@ -31,10 +31,10 @@ msgstr "https://plogins.com/marks/"
 #: marks.php
 msgid ""
 "Automatic and manual product badges for WooCommerce (sale, new, low-stock, "
-"bestseller) — CSS-only, no layout shift"
+"bestseller), CSS-only, no layout shift"
 msgstr ""
 "Automatyczne i ręczne oznaczenia produktów dla WooCommerce (promocja, "
-"nowość, niski stan, bestseller) — wyłącznie CSS, bez przesunięć układu"
+"nowość, niski stan, bestseller), wyłącznie CSS, bez przesunięć układu"
 
 #. Author of the plugin
 #: marks.php
@@ -64,12 +64,12 @@ msgstr "Oznaczenia produktów zwiększające konwersję"
 
 #: src/Admin/Settings.php:125
 msgid ""
-"Badges highlight what makes a product worth buying — a sale, a fresh "
+"Badges highlight what makes a product worth buying, a sale, a fresh "
 "arrival, low stock or a bestseller. They are pure CSS, so they load "
 "instantly and never shift your layout. Configure them below; the live "
 "preview on the right updates as you type."
 msgstr ""
-"Oznaczenia podkreślają to, co czyni produkt wartym zakupu — promocję, "
+"Oznaczenia podkreślają to, co czyni produkt wartym zakupu, promocję, "
 "nowość, niski stan magazynowy lub status bestsellera. Są oparte wyłącznie na "
 "CSS, więc ładują się natychmiast i nigdy nie przesuwają układu. Skonfiguruj "
 "je poniżej; podgląd na żywo po prawej stronie aktualizuje się podczas "
@@ -86,10 +86,10 @@ msgstr "Włącz oznaczenia"
 #: src/Admin/Settings.php:142
 msgid ""
 "The master switch. When off, no badges render anywhere on your storefront "
-"and the badge stylesheet is not loaded — zero front-end impact."
+"and the badge stylesheet is not loaded, zero front-end impact."
 msgstr ""
 "Główny przełącznik. Gdy wyłączony, żadne oznaczenia nie są renderowane w "
-"sklepie, a arkusz stylów oznaczeń nie jest wczytywany — zerowy wpływ na "
+"sklepie, a arkusz stylów oznaczeń nie jest wczytywany, zerowy wpływ na "
 "front sklepu."
 
 #: src/Admin/Settings.php:153
@@ -141,11 +141,11 @@ msgstr "Oznaczenia automatyczne"
 
 #: src/Admin/Settings.php:189
 msgid ""
-"These appear on their own based on each product's live state — no manual "
+"These appear on their own based on each product's live state, no manual "
 "tagging needed. Tick the ones you want and, optionally, give them your own "
 "wording. Leave a label blank to use the translated default."
 msgstr ""
-"Pojawiają się samodzielnie na podstawie bieżącego stanu każdego produktu — "
+"Pojawiają się samodzielnie na podstawie bieżącego stanu każdego produktu, "
 "bez ręcznego oznaczania. Zaznacz te, których chcesz, i opcjonalnie nadaj im "
 "własne brzmienie. Pozostaw etykietę pustą, aby użyć przetłumaczonej wartości "
 "domyślnej."
@@ -259,10 +259,10 @@ msgstr "Pokazuje rabat promocyjny w procentach (np. -20%)."
 #: src/Admin/Settings.php:201
 msgid ""
 "Calculates the saving from the regular and sale price automatically, e.g. "
-"-20%. Pairs well with — or instead of — the plain Sale badge."
+"-20%. Pairs well with, or instead of, the plain Sale badge."
 msgstr ""
 "Automatycznie oblicza oszczędność na podstawie ceny regularnej i "
-"promocyjnej, np. -20%. Dobrze łączy się ze zwykłym oznaczeniem Promocja — "
+"promocyjnej, np. -20%. Dobrze łączy się ze zwykłym oznaczeniem Promocja, "
 "lub może je zastąpić."
 
 #: src/Admin/Settings.php:204
@@ -278,11 +278,11 @@ msgstr ""
 
 #: src/Admin/Settings.php:207
 msgid ""
-"Avoids two sale labels on one product card. Marks badges are CSS-only — they "
+"Avoids two sale labels on one product card. Marks badges are CSS-only, they "
 "never reflow the page. Best used together with the Sale badge above."
 msgstr ""
 "Zapobiega pojawieniu się dwóch etykiet promocji na jednej karcie produktu. "
-"Oznaczenia Marks są oparte wyłącznie na CSS — nigdy nie powodują przebudowy "
+"Oznaczenia Marks są oparte wyłącznie na CSS, nigdy nie powodują przebudowy "
 "strony. Najlepiej używać razem z oznaczeniem Promocja powyżej."
 
 #: src/Admin/Settings.php:215
@@ -453,12 +453,12 @@ msgstr "Oznaczenie ręczne"
 #, php-format
 msgid ""
 "Define one store-wide badge (label + colour). Leave the label empty to "
-"disable it. To show it on a specific product, set the %s product meta — "
+"disable it. To show it on a specific product, set the %s product meta, "
 "handy for \"Editor's pick\" or \"Staff favourite\" flags."
 msgstr ""
 "Zdefiniuj jedno ogólnosklepowe oznaczenie (etykieta + kolor). Pozostaw "
 "etykietę pustą, aby je wyłączyć. Aby pokazać je na konkretnym produkcie, "
-"ustaw metadane produktu %s — przydatne dla oznaczeń „Wybór redakcji” lub "
+"ustaw metadane produktu %s, przydatne dla oznaczeń „Wybór redakcji” lub "
 "„Ulubione obsługi”."
 
 #: src/Admin/Settings.php:297
@@ -501,9 +501,9 @@ msgid "A sample of how your badges will look on a product image."
 msgstr "Przykład tego, jak Twoje oznaczenia będą wyglądać na zdjęciu produktu."
 
 #: src/Admin/Settings.php:368
-msgid "No badges enabled yet — tick some on the left to see them here."
+msgid "No badges enabled yet, tick some on the left to see them here."
 msgstr ""
-"Nie włączono jeszcze żadnych oznaczeń — zaznacz kilka po lewej, aby zobaczyć "
+"Nie włączono jeszcze żadnych oznaczeń, zaznacz kilka po lewej, aby zobaczyć "
 "je tutaj."
 
 #: src/Admin/Settings.php:385

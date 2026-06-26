@@ -122,7 +122,7 @@ final class Settings implements HasHooks
                 <div>
                     <h2><?php esc_html_e('Product badges that boost conversions', 'marks'); ?></h2>
                     <p>
-                        <?php esc_html_e('Badges highlight what makes a product worth buying — a sale, a fresh arrival, low stock or a bestseller. They are pure CSS, so they load instantly and never shift your layout. Configure them below; the live preview on the right updates as you type.', 'marks'); ?>
+                        <?php esc_html_e('Badges highlight what makes a product worth buying, a sale, a fresh arrival, low stock or a bestseller. They are pure CSS, so they load instantly and never shift your layout. Configure them below; the live preview on the right updates as you type.', 'marks'); ?>
                     </p>
                 </div>
             </div>
@@ -139,7 +139,7 @@ final class Settings implements HasHooks
                                     <tr>
                                         <th scope="row">
                                             <?php esc_html_e('Enable badges', 'marks'); ?>
-                                            <?php $this->help(__('The master switch. When off, no badges render anywhere on your storefront and the badge stylesheet is not loaded — zero front-end impact.', 'marks')); ?>
+                                            <?php $this->help(__('The master switch. When off, no badges render anywhere on your storefront and the badge stylesheet is not loaded, zero front-end impact.', 'marks')); ?>
                                         </th>
                                         <td>
                                             <label for="marks_enabled">
@@ -186,7 +186,7 @@ final class Settings implements HasHooks
                         <div class="marks-card">
                             <h2><?php esc_html_e('Automatic badges', 'marks'); ?></h2>
                             <p class="description">
-                                <?php esc_html_e('These appear on their own based on each product\'s live state — no manual tagging needed. Tick the ones you want and, optionally, give them your own wording. Leave a label blank to use the translated default.', 'marks'); ?>
+                                <?php esc_html_e('These appear on their own based on each product\'s live state, no manual tagging needed. Tick the ones you want and, optionally, give them your own wording. Leave a label blank to use the translated default.', 'marks'); ?>
                             </p>
                             <table class="form-table" role="presentation">
                                 <tbody>
@@ -198,13 +198,13 @@ final class Settings implements HasHooks
                                     $this->autoBadgeRow('free_shipping', __('Free shipping', 'marks'), __('On products in a free-shipping shipping class.', 'marks'), $settings, true, __('Shown for products whose shipping class matches one listed under "Free-shipping classes".', 'marks'));
                                     $this->autoBadgeRow('out_of_stock', __('Out of stock', 'marks'), __('On products that are out of stock.', 'marks'), $settings, true, __('Sets expectations before the click. Shown when WooCommerce reports the product as out of stock.', 'marks'));
                                     // Discount-percent badge text is computed (e.g. -20%), so no label field.
-                                    $this->autoBadgeRow('discount_percent', __('Discount percent', 'marks'), __('Shows the sale discount as a percentage (e.g. -20%).', 'marks'), $settings, false, __('Calculates the saving from the regular and sale price automatically, e.g. -20%. Pairs well with — or instead of — the plain Sale badge.', 'marks'));
+                                    $this->autoBadgeRow('discount_percent', __('Discount percent', 'marks'), __('Shows the sale discount as a percentage (e.g. -20%).', 'marks'), $settings, false, __('Calculates the saving from the regular and sale price automatically, e.g. -20%. Pairs well with, or instead of, the plain Sale badge.', 'marks'));
                                     $this->checkboxRow(
                                         'hide_woocommerce_sale_flash',
                                         __('Hide theme “Sale!” flash', 'marks'),
                                         __('Replace WooCommerce’s default sale flash with the Marks sale badge only.', 'marks'),
                                         $settings,
-                                        __('Avoids two sale labels on one product card. Marks badges are CSS-only — they never reflow the page. Best used together with the Sale badge above.', 'marks'),
+                                        __('Avoids two sale labels on one product card. Marks badges are CSS-only, they never reflow the page. Best used together with the Sale badge above.', 'marks'),
                                     );
                                     ?>
                                 </tbody>
@@ -285,7 +285,7 @@ final class Settings implements HasHooks
                                 <?php
                                 printf(
                                     /* translators: %s: meta key wrapped in <code>. */
-                                    esc_html__('Define one store-wide badge (label + colour). Leave the label empty to disable it. To show it on a specific product, set the %s product meta — handy for "Editor\'s pick" or "Staff favourite" flags.', 'marks'),
+                                    esc_html__('Define one store-wide badge (label + colour). Leave the label empty to disable it. To show it on a specific product, set the %s product meta, handy for "Editor\'s pick" or "Staff favourite" flags.', 'marks'),
                                     '<code>_marks_manual_text</code>',
                                 );
                                 ?>
@@ -365,7 +365,7 @@ final class Settings implements HasHooks
                     <span class="marks-preview__badge marks-preview__badge--warning"><?php esc_html_e('Low stock', 'marks'); ?></span>
                 </div>
                 <p class="marks-preview__empty" hidden>
-                    <?php esc_html_e('No badges enabled yet — tick some on the left to see them here.', 'marks'); ?>
+                    <?php esc_html_e('No badges enabled yet, tick some on the left to see them here.', 'marks'); ?>
                 </p>
             </div>
         </aside>
