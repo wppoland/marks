@@ -1,4 +1,4 @@
-=== Marks ===
+=== Marks - Product Badges for WooCommerce ===
 Contributors: motylanogha
 Tags: woocommerce, product badges, sale badge, new badge, low stock
 Requires at least: 6.5
