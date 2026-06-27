@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4959b29bec5a3f9c7db12ea7d0b94619",
+    "content-hash": "f375f7718f3a55349a1e0773fe51256f",
     "packages": [],
     "packages-dev": [
         {
@@ -105,16 +105,16 @@
         },
         {
             "name": "php-stubs/woocommerce-stubs",
-            "version": "v10.8.0",
+            "version": "v10.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-stubs/woocommerce-stubs.git",
-                "reference": "9d59e65dcabc18153c243cb9acd85fc88ef40589"
+                "reference": "e6d583b9fa05b3f5ff67f86c939b45a0c35b8444"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-stubs/woocommerce-stubs/zipball/9d59e65dcabc18153c243cb9acd85fc88ef40589",
-                "reference": "9d59e65dcabc18153c243cb9acd85fc88ef40589",
+                "url": "https://api.github.com/repos/php-stubs/woocommerce-stubs/zipball/e6d583b9fa05b3f5ff67f86c939b45a0c35b8444",
+                "reference": "e6d583b9fa05b3f5ff67f86c939b45a0c35b8444",
                 "shasum": ""
             },
             "require": {
@@ -143,9 +143,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-stubs/woocommerce-stubs/issues",
-                "source": "https://github.com/php-stubs/woocommerce-stubs/tree/v10.8.0"
+                "source": "https://github.com/php-stubs/woocommerce-stubs/tree/v10.9.1"
             },
-            "time": "2026-05-27T11:46:50+00:00"
+            "time": "2026-06-25T10:47:57+00:00"
         },
         {
             "name": "php-stubs/wordpress-stubs",
@@ -718,12 +718,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": ">=8.1"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.9.0"
 }
