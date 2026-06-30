@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Marks\Service;
+namespace Plogins\Marks\Service;
 
-use Marks\Contract\HasHooks;
+use Plogins\Marks\Contract\HasHooks;
 use WPPoland\StorefrontKit\Badge\BadgeEngine;
 
 defined('ABSPATH') || exit;
 
 /**
- * Wires {@see BadgeEngine} with this plugin's text-domain ('marks'), option
+ * Wires {@see BadgeEngine} with this plugin's text-domain ('plogins-marks'), option
  * prefix ('marks_') and product meta keys, and renders badges through a CSS-only
  * template. This class supplies localisation, option storage, meta-key naming
  * and the front-end stylesheet.
@@ -45,12 +45,12 @@ final class MarksService implements HasHooks
         $this->engine = new BadgeEngine(
             'badges',
             [
-                'sale'          => __('Sale', 'marks'),
-                'new'           => __('New', 'marks'),
-                'low_stock'     => __('Low stock', 'marks'),
-                'bestseller'    => __('Bestseller', 'marks'),
-                'free_shipping' => __('Free shipping', 'marks'),
-                'out_of_stock'  => __('Out of stock', 'marks'),
+                'sale'          => __('Sale', 'plogins-marks'),
+                'new'           => __('New', 'plogins-marks'),
+                'low_stock'     => __('Low stock', 'plogins-marks'),
+                'bestseller'    => __('Bestseller', 'plogins-marks'),
+                'free_shipping' => __('Free shipping', 'plogins-marks'),
+                'out_of_stock'  => __('Out of stock', 'plogins-marks'),
             ],
             [
                 'manual_text'    => self::META_MANUAL_TEXT,
@@ -91,7 +91,7 @@ final class MarksService implements HasHooks
             'marks',
             MARKS_URL . 'assets/css/badges.css',
             [],
-            \Marks\VERSION,
+            \Plogins\Marks\VERSION,
         );
     }
 
@@ -156,7 +156,7 @@ final class MarksService implements HasHooks
             'marks',
             MARKS_URL . 'assets/css/badges.css',
             [],
-            \Marks\VERSION,
+            \Plogins\Marks\VERSION,
         );
 
         $settings = $this->settings();

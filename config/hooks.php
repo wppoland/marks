@@ -2,7 +2,7 @@
 /**
  * Boot order: services listed here are resolved from the container and have
  * their registerHooks() called during Plugin::boot(). Each must implement
- * Marks\Contract\HasHooks.
+ * Plogins\Marks\Contract\HasHooks.
  *
  * @package Marks
  *
@@ -11,8 +11,8 @@
 
 declare(strict_types=1);
 
-use Marks\Admin\Settings;
-use Marks\Service\MarksService;
+use Plogins\Marks\Admin\Settings;
+use Plogins\Marks\Service\MarksService;
 
 defined('ABSPATH') || exit;
 
