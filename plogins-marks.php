@@ -20,7 +20,7 @@
 
 declare(strict_types=1);
 
-namespace Plogins\Marks;
+namespace Marks;
 
 defined('ABSPATH') || exit;
 

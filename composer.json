@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Plogins\\Marks\\": "src/",
+            "Marks\\": "src/",
             "WPPoland\\StorefrontKit\\": "lib/storefront-kit/"
         }
     },

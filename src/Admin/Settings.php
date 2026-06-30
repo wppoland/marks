@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Plogins\Marks\Admin;
+namespace Marks\Admin;
 
 defined('ABSPATH') || exit;
 
-use Plogins\Marks\Contract\HasHooks;
+use Marks\Contract\HasHooks;
 
 /**
  * Admin settings page registered as a top-level "Marks" menu.
@@ -54,14 +54,14 @@ final class Settings implements HasHooks
             'marks-admin',
             MARKS_URL . 'assets/css/admin.css',
             [],
-            \Plogins\Marks\VERSION,
+            \Marks\VERSION,
         );
 
         wp_enqueue_script(
             'marks-admin',
             MARKS_URL . 'assets/js/admin.js',
             [],
-            \Plogins\Marks\VERSION,
+            \Marks\VERSION,
             ['in_footer' => true, 'strategy' => 'defer'],
         );
     }

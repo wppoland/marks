@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Plogins\Marks\Service;
+namespace Marks\Service;
 
-use Plogins\Marks\Contract\HasHooks;
+use Marks\Contract\HasHooks;
 use WPPoland\StorefrontKit\Badge\BadgeEngine;
 
 defined('ABSPATH') || exit;
@@ -91,7 +91,7 @@ final class MarksService implements HasHooks
             'marks',
             MARKS_URL . 'assets/css/badges.css',
             [],
-            \Plogins\Marks\VERSION,
+            \Marks\VERSION,
         );
     }
 
@@ -156,7 +156,7 @@ final class MarksService implements HasHooks
             'marks',
             MARKS_URL . 'assets/css/badges.css',
             [],
-            \Plogins\Marks\VERSION,
+            \Marks\VERSION,
         );
 
         $settings = $this->settings();

@@ -11,8 +11,8 @@
 
 declare(strict_types=1);
 
-use Plogins\Marks\Admin\Settings;
-use Plogins\Marks\Service\MarksService;
+use Marks\Admin\Settings;
+use Marks\Service\MarksService;
 
 defined('ABSPATH') || exit;
 
