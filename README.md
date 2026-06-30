@@ -4,4 +4,4 @@
 - **Documentation:** https://plogins.com/marks/docs/
 - **Author:** [WPPoland.com](https://wppoland.com)
 - **WordPress.org contributor:** motylanogha
-- **Source:** https://github.com/wppoland/marks
+- **Source:** https://github.com/wppoland/plogins-marks

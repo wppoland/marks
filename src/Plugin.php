@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Marks;
+namespace Plogins\Marks;
 
-use Marks\Contract\HasHooks;
+use Plogins\Marks\Contract\HasHooks;
 
 defined('ABSPATH') || exit;
 

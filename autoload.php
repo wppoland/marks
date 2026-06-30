@@ -9,7 +9,7 @@
 
 declare(strict_types=1);
 
-namespace Marks;
+namespace Plogins\Marks;
 
 defined('ABSPATH') || exit;
 
@@ -21,7 +21,7 @@ if (is_readable($marks_composer)) {
 
 spl_autoload_register(static function (string $class): void {
     $prefixes = [
-        'Marks\\'           => __DIR__ . '/src/',
+        'Plogins\\Marks\\'           => __DIR__ . '/src/',
         'WPPoland\\StorefrontKit\\'    => __DIR__ . '/lib/storefront-kit/',
     ];
 

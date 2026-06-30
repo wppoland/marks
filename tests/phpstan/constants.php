@@ -19,11 +19,11 @@ namespace {
     }
 }
 
-namespace Marks {
-    if (! defined('Marks\\VERSION')) {
-        define('Marks\\VERSION', '0.2.0');
+namespace Plogins\Marks {
+    if (! defined('Plogins\\Marks\\VERSION')) {
+        define('Plogins\\Marks\\VERSION', '0.2.0');
     }
-    if (! defined('Marks\\PLUGIN_FILE')) {
-        define('Marks\\PLUGIN_FILE', '/tmp/marks/marks.php');
+    if (! defined('Plogins\\Marks\\PLUGIN_FILE')) {
+        define('Plogins\\Marks\\PLUGIN_FILE', '/tmp/marks/marks.php');
     }
 }

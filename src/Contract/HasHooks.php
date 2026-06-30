@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Marks\Contract;
+namespace Plogins\Marks\Contract;
 
 defined('ABSPATH') || exit;
 
