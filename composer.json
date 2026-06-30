@@ -1,5 +1,5 @@
 {
-    "name": "wppoland/plogins-marks",
+    "name": "wppoland/marks",
     "description": "Automatic and manual product badges for WooCommerce (sale, new, low-stock, bestseller) — CSS-only, no layout shift",
     "type": "wordpress-plugin",
     "license": "GPL-2.0-or-later",
@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Plogins\\Marks\\": "src/",
+            "Marks\\": "src/",
             "WPPoland\\StorefrontKit\\": "lib/storefront-kit/"
         }
     },

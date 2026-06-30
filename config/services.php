@@ -8,10 +8,10 @@
 
 declare(strict_types=1);
 
-use Plogins\Marks\Admin\Settings;
-use Plogins\Marks\Container;
-use Plogins\Marks\Migrator;
-use Plogins\Marks\Service\MarksService;
+use Marks\Admin\Settings;
+use Marks\Container;
+use Marks\Migrator;
+use Marks\Service\MarksService;
 
 defined('ABSPATH') || exit;
 

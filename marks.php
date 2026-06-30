@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name:       Plogins Marks for WooCommerce
- * Plugin URI:        https://plogins.com/plogins-marks/
+ * Plugin Name:       Marks - Product Badges for WooCommerce
+ * Plugin URI:        https://plogins.com/marks/
  * Description:        Automatic and manual product badges for WooCommerce (sale, new, low-stock, bestseller) — CSS-only, no layout shift
- * Version:           0.3.1
+ * Version:           0.3.0
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Requires Plugins:  woocommerce
@@ -11,7 +11,7 @@
  * Author URI:        https://wppoland.com
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       plogins-marks
+ * Text Domain:       marks
  * Domain Path:       /languages
  * WC requires at least: 8.0
  *
@@ -20,11 +20,11 @@
 
 declare(strict_types=1);
 
-namespace Plogins\Marks;
+namespace Marks;
 
 defined('ABSPATH') || exit;
 
-const VERSION     = '0.3.1';
+const VERSION     = '0.3.0';
 const PLUGIN_FILE = __FILE__;
 
 define('MARKS_DIR', plugin_dir_path(__FILE__));
@@ -44,7 +44,7 @@ add_action('plugins_loaded', static function (): void {
     if (! class_exists('WooCommerce')) {
         add_action('admin_notices', static function (): void {
             echo '<div class="notice notice-error"><p>';
-            echo esc_html__('Marks requires WooCommerce to be active.', 'plogins-marks');
+            echo esc_html__('Marks requires WooCommerce to be active.', 'marks');
             echo '</p></div>';
         });
         return;

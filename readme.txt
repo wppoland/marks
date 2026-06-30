@@ -1,10 +1,10 @@
-=== Plogins Marks for WooCommerce ===
+=== Marks - Product Badges for WooCommerce ===
 Contributors: motylanogha
 Tags: woocommerce, product badges, sale badge, new badge, low stock
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 8.1
-Stable tag: 0.3.1
+Stable tag: 0.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,7 +21,7 @@ The badges are drawn with CSS and sit over the product image, so they add no
 JavaScript and don't shift the layout when the page loads. They show on the single
 product page and on shop, category and tag listings.
 
-The code is open and lives at https://github.com/wppoland/plogins-marks if you want to read
+The code is open and lives at https://github.com/wppoland/marks if you want to read
 it, file a bug or send a patch.
 
 Configuration lives under a top-level **Marks** admin menu: a global on/off
@@ -31,10 +31,11 @@ label and colour. Settings are sanitised and clamped on save.
 
 = Documentation and links =
 
-* **Documentation** - https://plogins.com/plogins-marks/docs/
-* **Plugin page** - https://plogins.com/plogins-marks/
-* **Source code** - https://github.com/wppoland/plogins-marks
-* **Bug reports and feature requests** - https://github.com/wppoland/plogins-marks/issues
+* **Documentation** - https://plogins.com/marks/docs/
+* **Plugin page** - https://plogins.com/marks/
+* **Source code** - https://github.com/wppoland/marks
+* **Bug reports and feature requests** - https://github.com/wppoland/marks/issues
+* **Discussions and questions** - https://github.com/wppoland/marks/discussions
 
 
 = Features =
@@ -63,7 +64,7 @@ pick the render style:
 
 == Installation ==
 
-1. Upload the plugin to `/wp-content/plugins/plogins-marks`, or install via Plugins → Add New.
+1. Upload the plugin to `/wp-content/plugins/marks`, or install via Plugins → Add New.
 2. Activate it. WooCommerce must be active.
 3. Go to the **Marks** menu, enable badges, and choose which automatic badges to show.
 
@@ -101,9 +102,6 @@ The plugin stores its configuration in two WordPress options (`marks_settings` a
 
 == Changelog ==
 
-= 0.3.1 =
-* Renamed to Plogins Marks for WooCommerce for a more distinctive plugin name.
-
 = 0.3.0 =
 * New: optional hide of the default WooCommerce sale flash when the Marks sale badge is enabled.
 * Admin settings help tooltips polish.
@@ -115,7 +113,7 @@ The plugin stores its configuration in two WordPress options (`marks_settings` a
 * Add placement controls (single product page and/or listings).
 * Add appearance controls: badge shape, uppercase and per-context badge caps.
 * Add the `[marks_badges]` shortcode for manual placement.
-* Add a translation template (languages/plogins-marks.pot) and an uninstall cleanup.
+* Add a translation template (languages/marks.pot) and an uninstall cleanup.
 
 = 0.1.0 =
 * Initial release: automatic Sale / New / Low stock / Bestseller badges, a manual badge, and a settings screen. CSS-only.
