@@ -88,6 +88,11 @@ Set the manual badge label and colour on the Marks settings screen, then set the
 product meta `_marks_manual_text` (and optionally `_marks_manual_style`) on the
 products that should display it.
 
+
+= Does this plugin work on WordPress Multisite? =
+
+Yes. This plugin is compatible with WordPress Multisite. Network activate it or activate it on individual sites; each site keeps its own settings and data.
+
 == Screenshots ==
 
 1. Automatic badges on a shop listing.
